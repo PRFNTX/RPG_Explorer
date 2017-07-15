@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resource_file type="TileSet" subresource_count="36" version="2.0" version_name="Godot Engine v2.0.stable.custom_build">
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile34_C3_R2.png" type="Texture" index="30"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile33_C3_R1.png" type="Texture" index="12"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile3_C1_R3.png" type="Texture" index="31"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile35_C3_R3.png" type="Texture" index="33"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile36_C3_R4.png" type="Texture" index="3"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile2_C1_R2.png" type="Texture" index="23"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile5_C1_R5.png" type="Texture" index="2"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile37_C3_R5.png" type="Texture" index="4"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile4_C1_R4.png" type="Texture" index="34"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile19_C2_R3.png" type="Texture" index="32"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile98_C7_R2.png" type="Texture" index="5"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile21_C2_R5.png" type="Texture" index="6"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile31_C2_R15.png" type="Texture" index="29"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile17_C2_R1.png" type="Texture" index="1"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile165_C11_R5.png" type="Texture" index="24"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile185_C12_R9.png" type="Texture" index="26"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile152_C10_R8.png" type="Texture" index="14"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile166_C11_R6.png" type="Texture" index="16"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile168_C11_R8.png" type="Texture" index="15"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile46_C3_R14.png" type="Texture" index="11"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile167_C11_R7.png" type="Texture" index="17"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile14_C1_R14.png" type="Texture" index="10"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile169_C11_R9.png" type="Texture" index="28"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile149_C10_R5.png" type="Texture" index="22"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile13_C1_R13.png" type="Texture" index="9"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile29_C2_R13.png" type="Texture" index="8"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile182_C12_R6.png" type="Texture" index="21"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile153_C10_R9.png" type="Texture" index="27"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile183_C12_R7.png" type="Texture" index="20"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile45_C3_R13.png" type="Texture" index="7"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile181_C12_R5.png" type="Texture" index="25"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile184_C12_R8.png" type="Texture" index="13"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile151_C10_R7.png" type="Texture" index="19"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile150_C10_R6.png" type="Texture" index="18"></ext_resource>
+	<ext_resource path="res://TrailMapArtAssets/StoneBuildings/Tile1_C1_R1.png" type="Texture" index="0"></ext_resource>
+	<main_resource>
+		<string name="0/name"> "Sprite" </string>
+		<resource name="0/texture" external="0">  </resource>
+		<vector2 name="0/tex_offset"> 0, 0 </vector2>
+		<resource name="0/material"></resource>		<rect2 name="0/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="0/occluder_offset"> 16, 16 </vector2>
+		<resource name="0/occluder"></resource>		<vector2 name="0/navigation_offset"> 16, 16 </vector2>
+		<resource name="0/navigation"></resource>		<vector2 name="0/shape_offset"> 0, 0 </vector2>
+		<array name="0/shapes" len="0" shared="false">
+		</array>
+		<string name="1/name"> "Sprite1" </string>
+		<resource name="1/texture" external="1">  </resource>
+		<vector2 name="1/tex_offset"> 0, 0 </vector2>
+		<resource name="1/material"></resource>		<rect2 name="1/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="1/occluder_offset"> 16, 16 </vector2>
+		<resource name="1/occluder"></resource>		<vector2 name="1/navigation_offset"> 16, 16 </vector2>
+		<resource name="1/navigation"></resource>		<vector2 name="1/shape_offset"> 0, 0 </vector2>
+		<array name="1/shapes" len="0" shared="false">
+		</array>
+		<string name="2/name"> "Sprite2" </string>
+		<resource name="2/texture" external="12">  </resource>
+		<vector2 name="2/tex_offset"> 0, 0 </vector2>
+		<resource name="2/material"></resource>		<rect2 name="2/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="2/occluder_offset"> 16, 16 </vector2>
+		<resource name="2/occluder"></resource>		<vector2 name="2/navigation_offset"> 16, 16 </vector2>
+		<resource name="2/navigation"></resource>		<vector2 name="2/shape_offset"> 0, 0 </vector2>
+		<array name="2/shapes" len="0" shared="false">
+		</array>
+		<string name="3/name"> "Sprite3" </string>
+		<resource name="3/texture" external="23">  </resource>
+		<vector2 name="3/tex_offset"> 0, 0 </vector2>
+		<resource name="3/material"></resource>		<rect2 name="3/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="3/occluder_offset"> 16, 16 </vector2>
+		<resource name="3/occluder"></resource>		<vector2 name="3/navigation_offset"> 16, 16 </vector2>
+		<resource name="3/navigation"></resource>		<vector2 name="3/shape_offset"> 0, 0 </vector2>
+		<array name="3/shapes" len="0" shared="false">
+		</array>
+		<string name="4/name"> "Sprite4" </string>
+		<resource name="4/texture" external="29">  </resource>
+		<vector2 name="4/tex_offset"> 0, 0 </vector2>
+		<resource name="4/material"></resource>		<rect2 name="4/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="4/occluder_offset"> 16, 16 </vector2>
+		<resource name="4/occluder"></resource>		<vector2 name="4/navigation_offset"> 16, 16 </vector2>
+		<resource name="4/navigation"></resource>		<vector2 name="4/shape_offset"> 0, 0 </vector2>
+		<array name="4/shapes" len="0" shared="false">
+		</array>
+		<string name="5/name"> "Sprite5" </string>
+		<resource name="5/texture" external="30">  </resource>
+		<vector2 name="5/tex_offset"> 0, 0 </vector2>
+		<resource name="5/material"></resource>		<rect2 name="5/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="5/occluder_offset"> 16, 16 </vector2>
+		<resource name="5/occluder"></resource>		<vector2 name="5/navigation_offset"> 16, 16 </vector2>
+		<resource name="5/navigation"></resource>		<vector2 name="5/shape_offset"> 0, 0 </vector2>
+		<array name="5/shapes" len="0" shared="false">
+		</array>
+		<string name="6/name"> "Sprite6" </string>
+		<resource name="6/texture" external="31">  </resource>
+		<vector2 name="6/tex_offset"> 0, 0 </vector2>
+		<resource name="6/material"></resource>		<rect2 name="6/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="6/occluder_offset"> 16, 16 </vector2>
+		<resource name="6/occluder"></resource>		<vector2 name="6/navigation_offset"> 16, 16 </vector2>
+		<resource name="6/navigation"></resource>		<vector2 name="6/shape_offset"> 0, 0 </vector2>
+		<array name="6/shapes" len="0" shared="false">
+		</array>
+		<string name="7/name"> "Sprite7" </string>
+		<resource name="7/texture" external="32">  </resource>
+		<vector2 name="7/tex_offset"> 0, 0 </vector2>
+		<resource name="7/material"></resource>		<rect2 name="7/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="7/occluder_offset"> 16, 16 </vector2>
+		<resource name="7/occluder"></resource>		<vector2 name="7/navigation_offset"> 16, 16 </vector2>
+		<resource name="7/navigation"></resource>		<vector2 name="7/shape_offset"> 0, 0 </vector2>
+		<array name="7/shapes" len="0" shared="false">
+		</array>
+		<string name="8/name"> "Sprite8" </string>
+		<resource name="8/texture" external="33">  </resource>
+		<vector2 name="8/tex_offset"> 0, 0 </vector2>
+		<resource name="8/material"></resource>		<rect2 name="8/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="8/occluder_offset"> 16, 16 </vector2>
+		<resource name="8/occluder"></resource>		<vector2 name="8/navigation_offset"> 16, 16 </vector2>
+		<resource name="8/navigation"></resource>		<vector2 name="8/shape_offset"> 0, 0 </vector2>
+		<array name="8/shapes" len="0" shared="false">
+		</array>
+		<string name="9/name"> "Sprite9" </string>
+		<resource name="9/texture" external="34">  </resource>
+		<vector2 name="9/tex_offset"> 0, 0 </vector2>
+		<resource name="9/material"></resource>		<rect2 name="9/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="9/occluder_offset"> 16, 16 </vector2>
+		<resource name="9/occluder"></resource>		<vector2 name="9/navigation_offset"> 16, 16 </vector2>
+		<resource name="9/navigation"></resource>		<vector2 name="9/shape_offset"> 0, 0 </vector2>
+		<array name="9/shapes" len="0" shared="false">
+		</array>
+		<string name="10/name"> "Sprite10" </string>
+		<resource name="10/texture" external="2">  </resource>
+		<vector2 name="10/tex_offset"> 0, 0 </vector2>
+		<resource name="10/material"></resource>		<rect2 name="10/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="10/occluder_offset"> 16, 16 </vector2>
+		<resource name="10/occluder"></resource>		<vector2 name="10/navigation_offset"> 16, 16 </vector2>
+		<resource name="10/navigation"></resource>		<vector2 name="10/shape_offset"> 0, 0 </vector2>
+		<array name="10/shapes" len="0" shared="false">
+		</array>
+		<string name="11/name"> "Sprite11" </string>
+		<resource name="11/texture" external="3">  </resource>
+		<vector2 name="11/tex_offset"> 0, 0 </vector2>
+		<resource name="11/material"></resource>		<rect2 name="11/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="11/occluder_offset"> 16, 16 </vector2>
+		<resource name="11/occluder"></resource>		<vector2 name="11/navigation_offset"> 16, 16 </vector2>
+		<resource name="11/navigation"></resource>		<vector2 name="11/shape_offset"> 0, 0 </vector2>
+		<array name="11/shapes" len="0" shared="false">
+		</array>
+		<string name="12/name"> "Sprite12" </string>
+		<resource name="12/texture" external="4">  </resource>
+		<vector2 name="12/tex_offset"> 0, 0 </vector2>
+		<resource name="12/material"></resource>		<rect2 name="12/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="12/occluder_offset"> 16, 16 </vector2>
+		<resource name="12/occluder"></resource>		<vector2 name="12/navigation_offset"> 16, 16 </vector2>
+		<resource name="12/navigation"></resource>		<vector2 name="12/shape_offset"> 0, 0 </vector2>
+		<array name="12/shapes" len="0" shared="false">
+		</array>
+		<string name="13/name"> "Sprite13" </string>
+		<resource name="13/texture" external="5">  </resource>
+		<vector2 name="13/tex_offset"> 0, 0 </vector2>
+		<resource name="13/material"></resource>		<rect2 name="13/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="13/occluder_offset"> 16, 16 </vector2>
+		<resource name="13/occluder"></resource>		<vector2 name="13/navigation_offset"> 16, 16 </vector2>
+		<resource name="13/navigation"></resource>		<vector2 name="13/shape_offset"> 0, 0 </vector2>
+		<array name="13/shapes" len="0" shared="false">
+		</array>
+		<string name="14/name"> "Sprite14" </string>
+		<resource name="14/texture" external="6">  </resource>
+		<vector2 name="14/tex_offset"> 0, 0 </vector2>
+		<resource name="14/material"></resource>		<rect2 name="14/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="14/occluder_offset"> 16, 16 </vector2>
+		<resource name="14/occluder"></resource>		<vector2 name="14/navigation_offset"> 16, 16 </vector2>
+		<resource name="14/navigation"></resource>		<vector2 name="14/shape_offset"> 0, 0 </vector2>
+		<array name="14/shapes" len="0" shared="false">
+		</array>
+		<string name="15/name"> "Sprite15" </string>
+		<resource name="15/texture" external="7">  </resource>
+		<vector2 name="15/tex_offset"> 0, 0 </vector2>
+		<resource name="15/material"></resource>		<rect2 name="15/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="15/occluder_offset"> 16, 16 </vector2>
+		<resource name="15/occluder"></resource>		<vector2 name="15/navigation_offset"> 16, 16 </vector2>
+		<resource name="15/navigation"></resource>		<vector2 name="15/shape_offset"> 0, 0 </vector2>
+		<array name="15/shapes" len="0" shared="false">
+		</array>
+		<string name="16/name"> "Sprite16" </string>
+		<resource name="16/texture" external="8">  </resource>
+		<vector2 name="16/tex_offset"> 0, 0 </vector2>
+		<resource name="16/material"></resource>		<rect2 name="16/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="16/occluder_offset"> 16, 16 </vector2>
+		<resource name="16/occluder"></resource>		<vector2 name="16/navigation_offset"> 16, 16 </vector2>
+		<resource name="16/navigation"></resource>		<vector2 name="16/shape_offset"> 0, 0 </vector2>
+		<array name="16/shapes" len="0" shared="false">
+		</array>
+		<string name="17/name"> "Sprite17" </string>
+		<resource name="17/texture" external="9">  </resource>
+		<vector2 name="17/tex_offset"> 0, 0 </vector2>
+		<resource name="17/material"></resource>		<rect2 name="17/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="17/occluder_offset"> 16, 16 </vector2>
+		<resource name="17/occluder"></resource>		<vector2 name="17/navigation_offset"> 16, 16 </vector2>
+		<resource name="17/navigation"></resource>		<vector2 name="17/shape_offset"> 0, 0 </vector2>
+		<array name="17/shapes" len="0" shared="false">
+		</array>
+		<string name="18/name"> "Sprite18" </string>
+		<resource name="18/texture" external="10">  </resource>
+		<vector2 name="18/tex_offset"> 0, 0 </vector2>
+		<resource name="18/material"></resource>		<rect2 name="18/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="18/occluder_offset"> 16, 16 </vector2>
+		<resource name="18/occluder"></resource>		<vector2 name="18/navigation_offset"> 16, 16 </vector2>
+		<resource name="18/navigation"></resource>		<vector2 name="18/shape_offset"> 0, 0 </vector2>
+		<array name="18/shapes" len="0" shared="false">
+		</array>
+		<string name="19/name"> "Sprite19" </string>
+		<resource name="19/texture" external="11">  </resource>
+		<vector2 name="19/tex_offset"> 0, 0 </vector2>
+		<resource name="19/material"></resource>		<rect2 name="19/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="19/occluder_offset"> 16, 16 </vector2>
+		<resource name="19/occluder"></resource>		<vector2 name="19/navigation_offset"> 16, 16 </vector2>
+		<resource name="19/navigation"></resource>		<vector2 name="19/shape_offset"> 0, 0 </vector2>
+		<array name="19/shapes" len="0" shared="false">
+		</array>
+		<string name="20/name"> "Sprite20" </string>
+		<resource name="20/texture" external="13">  </resource>
+		<vector2 name="20/tex_offset"> 0, 0 </vector2>
+		<resource name="20/material"></resource>		<rect2 name="20/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="20/occluder_offset"> 16, 16 </vector2>
+		<resource name="20/occluder"></resource>		<vector2 name="20/navigation_offset"> 16, 16 </vector2>
+		<resource name="20/navigation"></resource>		<vector2 name="20/shape_offset"> 0, 0 </vector2>
+		<array name="20/shapes" len="0" shared="false">
+		</array>
+		<string name="21/name"> "Sprite21" </string>
+		<resource name="21/texture" external="14">  </resource>
+		<vector2 name="21/tex_offset"> 0, 0 </vector2>
+		<resource name="21/material"></resource>		<rect2 name="21/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="21/occluder_offset"> 16, 16 </vector2>
+		<resource name="21/occluder"></resource>		<vector2 name="21/navigation_offset"> 16, 16 </vector2>
+		<resource name="21/navigation"></resource>		<vector2 name="21/shape_offset"> 0, 0 </vector2>
+		<array name="21/shapes" len="0" shared="false">
+		</array>
+		<string name="22/name"> "Sprite22" </string>
+		<resource name="22/texture" external="15">  </resource>
+		<vector2 name="22/tex_offset"> 0, 0 </vector2>
+		<resource name="22/material"></resource>		<rect2 name="22/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="22/occluder_offset"> 16, 16 </vector2>
+		<resource name="22/occluder"></resource>		<vector2 name="22/navigation_offset"> 16, 16 </vector2>
+		<resource name="22/navigation"></resource>		<vector2 name="22/shape_offset"> 0, 0 </vector2>
+		<array name="22/shapes" len="0" shared="false">
+		</array>
+		<string name="23/name"> "Sprite23" </string>
+		<resource name="23/texture" external="16">  </resource>
+		<vector2 name="23/tex_offset"> 0, 0 </vector2>
+		<resource name="23/material"></resource>		<rect2 name="23/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="23/occluder_offset"> 16, 16 </vector2>
+		<resource name="23/occluder"></resource>		<vector2 name="23/navigation_offset"> 16, 16 </vector2>
+		<resource name="23/navigation"></resource>		<vector2 name="23/shape_offset"> 0, 0 </vector2>
+		<array name="23/shapes" len="0" shared="false">
+		</array>
+		<string name="24/name"> "Sprite24" </string>
+		<resource name="24/texture" external="17">  </resource>
+		<vector2 name="24/tex_offset"> 0, 0 </vector2>
+		<resource name="24/material"></resource>		<rect2 name="24/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="24/occluder_offset"> 16, 16 </vector2>
+		<resource name="24/occluder"></resource>		<vector2 name="24/navigation_offset"> 16, 16 </vector2>
+		<resource name="24/navigation"></resource>		<vector2 name="24/shape_offset"> 0, 0 </vector2>
+		<array name="24/shapes" len="0" shared="false">
+		</array>
+		<string name="25/name"> "Sprite25" </string>
+		<resource name="25/texture" external="18">  </resource>
+		<vector2 name="25/tex_offset"> 0, 0 </vector2>
+		<resource name="25/material"></resource>		<rect2 name="25/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="25/occluder_offset"> 16, 16 </vector2>
+		<resource name="25/occluder"></resource>		<vector2 name="25/navigation_offset"> 16, 16 </vector2>
+		<resource name="25/navigation"></resource>		<vector2 name="25/shape_offset"> 0, 0 </vector2>
+		<array name="25/shapes" len="0" shared="false">
+		</array>
+		<string name="26/name"> "Sprite26" </string>
+		<resource name="26/texture" external="19">  </resource>
+		<vector2 name="26/tex_offset"> 0, 0 </vector2>
+		<resource name="26/material"></resource>		<rect2 name="26/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="26/occluder_offset"> 16, 16 </vector2>
+		<resource name="26/occluder"></resource>		<vector2 name="26/navigation_offset"> 16, 16 </vector2>
+		<resource name="26/navigation"></resource>		<vector2 name="26/shape_offset"> 0, 0 </vector2>
+		<array name="26/shapes" len="0" shared="false">
+		</array>
+		<string name="27/name"> "Sprite27" </string>
+		<resource name="27/texture" external="20">  </resource>
+		<vector2 name="27/tex_offset"> 0, 0 </vector2>
+		<resource name="27/material"></resource>		<rect2 name="27/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="27/occluder_offset"> 16, 16 </vector2>
+		<resource name="27/occluder"></resource>		<vector2 name="27/navigation_offset"> 16, 16 </vector2>
+		<resource name="27/navigation"></resource>		<vector2 name="27/shape_offset"> 0, 0 </vector2>
+		<array name="27/shapes" len="0" shared="false">
+		</array>
+		<string name="28/name"> "Sprite28" </string>
+		<resource name="28/texture" external="21">  </resource>
+		<vector2 name="28/tex_offset"> 0, 0 </vector2>
+		<resource name="28/material"></resource>		<rect2 name="28/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="28/occluder_offset"> 16, 16 </vector2>
+		<resource name="28/occluder"></resource>		<vector2 name="28/navigation_offset"> 16, 16 </vector2>
+		<resource name="28/navigation"></resource>		<vector2 name="28/shape_offset"> 0, 0 </vector2>
+		<array name="28/shapes" len="0" shared="false">
+		</array>
+		<string name="29/name"> "Sprite29" </string>
+		<resource name="29/texture" external="22">  </resource>
+		<vector2 name="29/tex_offset"> 0, 0 </vector2>
+		<resource name="29/material"></resource>		<rect2 name="29/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="29/occluder_offset"> 16, 16 </vector2>
+		<resource name="29/occluder"></resource>		<vector2 name="29/navigation_offset"> 16, 16 </vector2>
+		<resource name="29/navigation"></resource>		<vector2 name="29/shape_offset"> 0, 0 </vector2>
+		<array name="29/shapes" len="0" shared="false">
+		</array>
+		<string name="30/name"> "Sprite30" </string>
+		<resource name="30/texture" external="24">  </resource>
+		<vector2 name="30/tex_offset"> 0, 0 </vector2>
+		<resource name="30/material"></resource>		<rect2 name="30/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="30/occluder_offset"> 16, 16 </vector2>
+		<resource name="30/occluder"></resource>		<vector2 name="30/navigation_offset"> 16, 16 </vector2>
+		<resource name="30/navigation"></resource>		<vector2 name="30/shape_offset"> 0, 0 </vector2>
+		<array name="30/shapes" len="0" shared="false">
+		</array>
+		<string name="31/name"> "Sprite31" </string>
+		<resource name="31/texture" external="25">  </resource>
+		<vector2 name="31/tex_offset"> 0, 0 </vector2>
+		<resource name="31/material"></resource>		<rect2 name="31/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="31/occluder_offset"> 16, 16 </vector2>
+		<resource name="31/occluder"></resource>		<vector2 name="31/navigation_offset"> 16, 16 </vector2>
+		<resource name="31/navigation"></resource>		<vector2 name="31/shape_offset"> 0, 0 </vector2>
+		<array name="31/shapes" len="0" shared="false">
+		</array>
+		<string name="32/name"> "Sprite32" </string>
+		<resource name="32/texture" external="26">  </resource>
+		<vector2 name="32/tex_offset"> 0, 0 </vector2>
+		<resource name="32/material"></resource>		<rect2 name="32/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="32/occluder_offset"> 16, 16 </vector2>
+		<resource name="32/occluder"></resource>		<vector2 name="32/navigation_offset"> 16, 16 </vector2>
+		<resource name="32/navigation"></resource>		<vector2 name="32/shape_offset"> 0, 0 </vector2>
+		<array name="32/shapes" len="0" shared="false">
+		</array>
+		<string name="33/name"> "Sprite33" </string>
+		<resource name="33/texture" external="27">  </resource>
+		<vector2 name="33/tex_offset"> 0, 0 </vector2>
+		<resource name="33/material"></resource>		<rect2 name="33/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="33/occluder_offset"> 16, 16 </vector2>
+		<resource name="33/occluder"></resource>		<vector2 name="33/navigation_offset"> 16, 16 </vector2>
+		<resource name="33/navigation"></resource>		<vector2 name="33/shape_offset"> 0, 0 </vector2>
+		<array name="33/shapes" len="0" shared="false">
+		</array>
+		<string name="34/name"> "Sprite34" </string>
+		<resource name="34/texture" external="28">  </resource>
+		<vector2 name="34/tex_offset"> 0, 0 </vector2>
+		<resource name="34/material"></resource>		<rect2 name="34/region"> 0, 0, 0, 0 </rect2>
+		<vector2 name="34/occluder_offset"> 16, 16 </vector2>
+		<resource name="34/occluder"></resource>		<vector2 name="34/navigation_offset"> 16, 16 </vector2>
+		<resource name="34/navigation"></resource>		<vector2 name="34/shape_offset"> 0, 0 </vector2>
+		<array name="34/shapes" len="0" shared="false">
+		</array>
+
+	</main_resource>
+</resource_file>

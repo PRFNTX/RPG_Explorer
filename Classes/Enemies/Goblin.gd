@@ -118,9 +118,10 @@ func set_bars(text_def,text_hp):
 #Goblin punch, 1 damage, 2 against players who have taken a turn
 #Wild rush (reduce the defence of 3 players by 1)
 #Panic. gain 3 defence, if defence is 0, 1 otherwise.
-func Action():
-	
-	var scn=get_tree().get_current_scene()
+#func Action():
+func actionValue(main_scene):
+	#var scn=get_tree().get_current_scene()
+	var scn=main_scene
 	var not_dead_players=[]
 	var pl_readies={}
 	var pl_used=[]
@@ -130,63 +131,64 @@ func Action():
 	var pl_vuln2={}
 	var pl_vuln3={}
 	#get if players/ai have turns ready
-	for r in scn.Friends.keys():
-		pl_readies[r]=scn.Friends[r].ready
-		if not scn.Friends[r].ready:
-			pl_used.append(r)
-		if not scn.Friends[r].forfeit and not scn.Friends[r].dead:
-			not_dead_players.append(r)
-	for ai in scn.Enemies.keys():
-		ai_readies[ai]=scn.Friends[ai].ready
+	#for r in scn.Friends.keys():
+	for F in scn.Fs:
+		pl_readies[F.Identity]=F.Entity.ready
+		if not F.Entity.ready:
+			pl_used.append(F.Entity)
+		if not F.Entity.forfeit and not F.Entity.dead:
+			not_dead_players.append(F.Entity)
+	for E in scn.Es:
+		ai_readies[E.Identity]=E.in_entity.ready
 	
 	
 	for i in not_dead_players:
-		if scn.Friends[i].dyn_Def==0:
-			pl_vuln[i]=scn.Friends[i].HP
-		elif scn.Friends[i].dyn_Def==1:
-			pl_vuln2[i]=scn.Friends[i].HP
+		if i.dyn_Def==0:
+			pl_vuln[i]=i.HP
+		elif i.dyn_Def==1:
+			pl_vuln2[i]=i.HP
 		else:
 			pl_vuln[i]=200
 	
 	var targs=[]
 	if Def==0:
-		use_ability(3,0)
+		return({"val":3,"use":[3,0]})
 	else:
 		for i in not_dead_players:
 			if pl_vuln.has(i):
 				targs.append(i)
 		if targs.size()>0:
-			use_ability(1,targs[randi()%targs.size()])
+			return({"val":4,"use":[1,targs[randi()%targs.size()]]})
 			#attack random target with goblin punch
 		else:
 			var semi_vuln=[]
 			for i in not_dead_players:
-				print(i)
-				print(scn.Friends[i].Name)
-				if scn.Friends[i].dyn_Def>=2 and not scn.Friends[i].ready:
+				#print(i)
+				#print(scn.Friends[i].Name)
+				if i.dyn_Def>=2 and not i.ready:
 					semi_vuln.append(i)
 			var final_pair=[]
-			if not scn.Friends[2].forfeit and not scn.Friends[2].dead:
-				final_pair.append(2)
-			if not scn.Friends[3].forfeit and not scn.Friends[3].dead:
-				final_pair.append(2)
+			if not scn.Fs[2].forfeit and not scn.Fs[2].dead:
+				final_pair.append(scn.Fs[2])
+			if not scn.Fs[3].Entity.forfeit and not scn.Fs[3].Entity.dead:
+				final_pair.append(scn.Fs[2])
 			#attack a random member of [goblin punch on semi_vuln, wild rush on final pair]
 			if semi_vuln.size()>0 or final_pair.size()>0:
 				var choice=randi()%(semi_vuln.size()+final_pair.size())
 				if choice<semi_vuln.size():
 					#attack semi_vuln[choice} with goblin punch
-					use_ability(1,semi_vuln[choice])
+					return({"val":2,"use":[1,semi_vuln[choice]]})
 				else:
 					#attack final_pair[choice]
-					use_ability(2,final_pair[choice])
+					return({"val":1.5,"use":[2,final_pair[choice]]})
 			else:
 				var choice=randi()%(not_dead_players.size()+1)
 				if choice<not_dead_players.size():
 					#goblin punch not_dead_players[choice]
-					use_ability(1,not_dead_players[choice])
+					return({"val":1,"use":[1,not_dead_players[choice]]})
 				else:
 					#panic
-					use_ability(3,0)
+					return({"val":0.5,"use":[3,0]})
 				
 func use_ability(ability,target):
 	##if an ability has two aspects (strike and poison) send each one individually

@@ -19,12 +19,12 @@ func use(target,by):
 	#	get_tree().get_current_scene().Enemies[target[0]].HP-=1
 	#else:
 	#	get_tree().get_current_scene().Enemies[target[0]].Def-=1
-	if target.in_enemy.Def<1:
-		target.in_enemy.HP-=2
-	elif target.in_enemy.Def<2:
-		target.in_enemy.HP-=1
+	if target.in_entity.Def<1:
+		target.in_entity.HP-=2
+	elif target.in_entity.Def<2:
+		target.in_entity.HP-=1
 	else:
-		target.in_enemy.Def-=1
+		target.in_entity.Def-=1
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here

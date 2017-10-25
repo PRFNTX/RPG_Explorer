@@ -35,10 +35,10 @@ class StateTargetable:
 		Enemy.emit_signal("Targeted",Enemy)
 	
 	func Mouseover(abl):
-		Enemy.emit_signal("Mouseover",abl,Enemy.Identity)
+		Enemy.emit_signal("Mouseover",abl,Enemy.Identity,false)
 	
 	func Clear():
-		Enemy.emit_signal("Mouseover",null,-1)
+		Enemy.emit_signal("Mouseover",null,-1,false)
 
 class StateUntargetable:
 	var Enemy
@@ -69,7 +69,7 @@ func _ready():
 	get_parent().connect("BattleInit",self,"_tempnull")
 	get_parent().connect("PlayerTurn",self,"_Playerturn")
 	get_parent().connect("ChangeTurns",self,"_tempnull")
-	get_parent().connect("EnemyTurn",self,"_tempnull")
+	get_parent().connect("EnemyTurn",self,"_enemyturn")
 	get_parent().connect("BattleResolves",self,"_tempnull")
 	get_parent().connect("TargetSelected",self,"_TargetComplete")
 	get_parent().connect("TargetStart",self,"_TargetStart")
@@ -80,17 +80,18 @@ func _ready():
 	pass
 	
 ####### Signal Functions#######
-func _affected(abl,iden):
+func _affected(abl,iden,fren):
 	get_node("Cover").hide()
 	
-	
-	if iden==-1:
-		pass
-	else:
-		
-		for i in range(abl.affect.size()):
-			if Identity==abl.affect[i]+iden:
-				get_node("Cover").show()
+	if not fren:
+		if iden==-1:
+			pass
+		else:
+			
+			for i in range(0,abl.affect.size()):
+				print(abl.affect[i])
+				if Identity==abl.affect[i]+iden:
+					get_node("Cover").show()
 
 func _TargetComplete(targ):
 	Targeting(false)
@@ -106,6 +107,13 @@ func _TargetStart(booF,booE,by,tsnull,abl):
 func _Playerturn(iden):
 	pass
 
+func _enemyturn(a,b):
+	if Identity==a:
+		pass #check before now that the entity is ready before calculating
+		#if state has use ability (state ready) then take action in_entity.use_ability(b["use"]) and
+		#rewrite use_ability in goblin to take an array
+	
+
 
 ################################
 func ChangeState(newState):
@@ -120,7 +128,8 @@ func ChangeState(newState):
 
 onready var TargetState=StateUntargetable.new(self)
 func Targeting(boo):
-	if boo.bool_enemy:
+	#was boo.bool_enemy
+	if boo:
 		TargetState=StateTargetable.new(self)
 	else:
 		TargetState=StateUntargetable.new(self)

@@ -3,6 +3,7 @@ extends Node2D
 
 #Enter a battle
 class StateBattleInit:
+	var echo = "StateBattleInit"
 	var Main
 	func _init(main,from):
 		Main=main
@@ -60,6 +61,7 @@ class StateBattleInit:
 	#pass to player turn
 
 class StatePlayerTurn:
+	var echo = "StatePlayerTurn"
 	var Main
 	var using_Ability
 	func _init(main,from):
@@ -68,8 +70,8 @@ class StatePlayerTurn:
 	func Endturn(char_used):
 		Main.ChangeState(Main.STATE_CHANGE,Main.STATE_PLAYER)
 		
-	func _targetable(ablDNU,iden):#for highlighting affected
-		Main.emit_signal("Affected", using_Ability,iden)
+	func _targetable(ablDNU,iden,friend):#for highlighting affected
+		Main.emit_signal("Affected", using_Ability,iden,friend)
 		
 	func _targeted(targ):
 		Main.emit_signal("TargetSelected", targ)
@@ -81,7 +83,10 @@ class StatePlayerTurn:
 	func OpenTargeting(booF,booE,by,boo_can_target_self,abl):
 		Main.emit_signal("TargetStart",booF,booE,by,boo_can_target_self,abl)
 		using_Ability=abl
-	
+		
+	func _Unlock():
+		Main.emit_signal("PlayerTurn",99)
+		
 	func exit():
 		Main.emit_signal("PlayerTurn")
 		print("exit() not currently valid, use EddTurn() instead")
@@ -89,9 +94,11 @@ class StatePlayerTurn:
 		#pass to change turn, and give it enemy turn parameter
 
 class StateChangeTurns:
+	var echo = "StateChangeTurn"
 	var Main
 	func _init(main,from):
 		Main=main
+		Main.emit_signal("ChangeTurns")
 		if from<0:
 			print("ENTERED TURN CHANGE FROM INVALID CALL")
 		elif from==Main.STATE_PLAYER:
@@ -101,6 +108,7 @@ class StateChangeTurns:
 					ready=true
 			if not ready:
 				Refresh()
+			print("from change turn")
 			Continue(Main.STATE_ENEMY)
 			#check if enemies are readied
 		elif from==Main.STATE_ENEMY:
@@ -120,22 +128,33 @@ class StateChangeTurns:
 		#refresh all entities
 	
 	func Continue(to):
-		Main.emit_signal("ChangeTurns")
+		Main.ChangeState(to,Main.STATE_CHANGE)
 		#use entered parameter to determine where to go
 
 class StateEnemyturn:
+	var echo = "StateEnemyTurn"
 	var Main
 	func _init(main,from):
 		Main=main
+		print("made it to enemy turn state")
+		var Max=[0,-99,null]
+		for E in Main.Es:
+			var res=E.in_entity.actionValue(Main)
+			if res["val"]>Max[1]:
+				Max=[E.Identity,res["val"],res]
+		
+		Main.emit_signal("EnemyTurn",Max[0],Max[2])
 		#take enemy action
-		Main.ChangeState(Main.STATE_CHANGE,Main.STATE_ENEMY)
+		
 	
 	func exit():
-		Main.emit_signal("EnemyTurn")
+		Main.emit_signal("ChangeTurns")
+		Main.ChangeState(Main.STATE_CHANGE,Main.STATE_ENEMY)
 		#pass to change turn, send instruction to go to player turn.
 
 #resolve a battle
 class StateBattleResolve:
+	var echo = "StateBattleResolve"
 	var Main
 	func _init(main,from):
 		Main=main
@@ -185,6 +204,11 @@ func _ready():
 	get_node("CharacterFrame3").connect("PlayerTurnEnd",self,"_playerturnend")
 	get_node("CharacterFrame4").connect("PlayerTurnEnd",self,"_playerturnend")
 	
+	get_node("CharacterFrame1").connect("Mouseover",self,"_mouseover")
+	get_node("CharacterFrame2").connect("Mouseover",self,"_mouseover")
+	get_node("CharacterFrame3").connect("Mouseover",self,"_mouseover")
+	get_node("CharacterFrame4").connect("Mouseover",self,"_mouseover")
+	
 	get_node("CharacterFrame1").connect("Activated",self,"_playerActivated")
 	get_node("CharacterFrame2").connect("Activated",self,"_playerActivated")
 	get_node("CharacterFrame3").connect("Activated",self,"_playerActivated")
@@ -201,11 +225,13 @@ func _ready():
 	
 	ChangeState(STATE_INIT)
 	
+	set_process_input(true)
 
 ##defer to state
-func _mouseover(abl,iden):
+func _mouseover(abl,iden,friend):
+	
 	if CurrentState.has_method("_targetable"):
-		CurrentState.call("_targetable",abl,iden)
+		CurrentState.call("_targetable",abl,iden,friend)
 		
 
 func _targeted(targ):
@@ -237,8 +263,8 @@ func _enemyturnend(source):
 	pass
 
 func _playerturnend(source):
-	if CurrentState.has_method("_playerturnend"):
-		CurrentState.call("EndTurn",source)
+	if CurrentState.has_method("Endturn"):
+		CurrentState.call("Endturn",source)
 	
 #defer to state
 func OpenTargeting(booF,booE,by,boo_can_target_self,AblNd):
@@ -262,6 +288,13 @@ func get_entity(bool_friend,num):
 	else:
 		ret = Es[num] 
 	return(ret)
+	
+
+##############################
+func _input(event):
+	if (event.is_action("Undo")):
+		if CurrentState.has_method("_Unlock"):
+			CurrentState.call("_Unlock")
 
 ##  Frame States:
 	#ready

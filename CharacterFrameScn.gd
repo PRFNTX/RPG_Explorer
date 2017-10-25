@@ -66,12 +66,12 @@ class StateAction:
 	
 	func Complete():
 		Character.emit_signal("PlayerTurnEnd",Character)
-		
 		Character.ChangeState(Character.STATE_EXHAUSTED)
 	
 	func TargetRecieved(targs):
 		#for targ in targs:
 		Character.using_Ability.use(targs,Character)
+		Complete()
 	
 	func _Lock():
 		Character.CurrentState=Character.StateInactive.new(Character,ID)
@@ -98,15 +98,25 @@ class StateExhausted:
 
 
 class StateTargetable:
+	var val=1
 	var debug_name="Targetable"
 	var Character
 	func _init(Char):
 		Character=Char
 	
+	
 	func Targeted():
 		Character.emit_signal("Targeted",Character)
+	
+	func Mouseover(abl):
+		Character.emit_signal("Mouseover",abl,Character.Identity,true)
+	
+	func Clear():
+		Character.emit_signal("Mouseover",null,-1,true)
+	
 
 class StateUntargetable:
+	var val=2
 	var debug_name="Untargetable"
 	var Character
 	func _init(Char):
@@ -120,6 +130,7 @@ var STATE_INACTIVE =3
 signal PlayerTurnEnd
 signal Activated
 signal Targeted
+signal Mouseover
 #states:
 	#ready to select
 		#in
@@ -199,11 +210,12 @@ func _ready():
 	
 	get_parent().connect("BattleInit",self,"_tempnull")
 	get_parent().connect("PlayerTurn",self,"_playerturn")
-	get_parent().connect("ChangeTurns",self,"_tempnull")
-	get_parent().connect("EnemyTurn",self,"_tempnull")
+	get_parent().connect("ChangeTurns",self,"_changeturns")
+	get_parent().connect("EnemyTurn",self,"_enemyturn")
 	get_parent().connect("BattleResolves",self,"_tempnull")
 	get_parent().connect("TargetSelected",self,"_TargetComplete")
 	get_parent().connect("TargetStart",self,"_targetstart")
+	get_parent().connect("Affected",self,"_affected")
 	#populate actions
 	
 	#State init
@@ -213,7 +225,19 @@ func _ready():
 	set_process_input(true)
 
 ###### Signal Functions ########
-
+func _affected(abl,iden,fren):
+	get_node("Cover").hide()
+	
+	if fren:
+		if iden==-1:
+			pass
+		else:
+			
+			for i in range(0,abl.affect.size()):
+				print(abl.affect[i])
+				if Identity==abl.affect[i]+iden:
+					get_node("Cover").show()
+	
 func _TargetComplete(targ):
 	Targeting(false)
 	#print(CurrentState.State_From.debug_name)
@@ -222,6 +246,7 @@ func _TargetComplete(targ):
 	#print(CurrentState.debug_name)
 	if CurrentState.has_method("TargetRecieved"):
 		CurrentState.call("TargetRecieved",targ)
+	Shift(STATENOSHIFT)
 	
 
 	
@@ -230,7 +255,10 @@ func _TargetComplete(targ):
 func _tempnull():
 	pass
 
+
 func _playerturn(iden):
+	if CurrentState.has_method("_Unlock"):
+		CurrentState.call("_Unlock")
 	if CurrentState.has_method("_toBaseState"):
 		CurrentState.call("_toBaseState")
 	if Identity<=iden:
@@ -243,6 +271,12 @@ func _targetstart(booF,booE,in_self,cat_targ_self,abl):
 		CurrentState.call("_Lock")
 	Targeting(booF)
 	
+func _enemyturn(dont,use):
+	if CurrentState.has_method("_Lock"):
+		CurrentState.call("_Lock")
+
+func _changeturns():
+	pass
 ##########################
 func initialize():
 	#known
@@ -329,8 +363,7 @@ func _input(event):
 		if CurrentState.has_method("_toBaseState"):
 			CurrentState.call("_toBaseState")
 			emit_signal("Activated",99)
-		if CurrentState.has_method("_Unlock"):
-			CurrentState.call("_Unlock")
+		
 			#emit_signal("Activated",99)
 		#emit_signal("Targeted",false)
 
@@ -339,11 +372,19 @@ var mouseover=false
 
 func _on_Control_mouse_enter():
 	mouseover=true
+	#signal battle instead for global
+	
+	if TargetState.has_method("Mouseover"):
+		TargetState.call("Mouseover",using_Ability)
 	
 
 
 func _on_Control_mouse_exit():
 	mouseover=false
+	#signal battle instead for global
+	if TargetState.has_method("Clear"):
+		TargetState.call("Clear")
+	
 	
 	
 	#######  SETTERS #############

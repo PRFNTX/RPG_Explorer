@@ -140,8 +140,10 @@ class StateEnemyturn:
 		var Max=[0,-99,null]
 		for E in Main.Es:
 			var res=E.in_entity.actionValue(Main)
+
 			if res["val"]>Max[1]:
 				Max=[E.Identity,res["val"],res]
+		
 		
 		Main.emit_signal("EnemyTurn",Max[0],Max[2])
 		#take enemy action

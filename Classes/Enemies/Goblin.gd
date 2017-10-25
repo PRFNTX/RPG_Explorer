@@ -133,11 +133,11 @@ func actionValue(main_scene):
 	#get if players/ai have turns ready
 	#for r in scn.Friends.keys():
 	for F in scn.Fs:
-		pl_readies[F.Identity]=F.Entity.ready
-		if not F.Entity.ready:
-			pl_used.append(F.Entity)
-		if not F.Entity.forfeit and not F.Entity.dead:
-			not_dead_players.append(F.Entity)
+		pl_readies[F.Identity]=F.in_entity.ready
+		if not F.in_entity.ready:
+			pl_used.append(F.in_entity)
+		if not F.in_entity.forfeit and not F.in_entity.dead:
+			not_dead_players.append(F.in_entity)
 	for E in scn.Es:
 		ai_readies[E.Identity]=E.in_entity.ready
 	
@@ -170,7 +170,7 @@ func actionValue(main_scene):
 			var final_pair=[]
 			if not scn.Fs[2].forfeit and not scn.Fs[2].dead:
 				final_pair.append(scn.Fs[2])
-			if not scn.Fs[3].Entity.forfeit and not scn.Fs[3].Entity.dead:
+			if not scn.Fs[3].in_entity.forfeit and not scn.Fs[3].in_entity.dead:
 				final_pair.append(scn.Fs[2])
 			#attack a random member of [goblin punch on semi_vuln, wild rush on final pair]
 			if semi_vuln.size()>0 or final_pair.size()>0:

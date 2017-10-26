@@ -28,6 +28,9 @@ class StateBattleInit:
 			#Friends[i].lbl_HP=FriendSlot[i].get_node("HP")
 			#send health back to node
 			chars[i].in_entity.frame=chars[i]
+			
+			chars[i].in_entity.lbl_Def=chars[i].get_node("Def")
+			chars[i].in_entity.lbl_HP=chars[i].get_node("HP")
 			##Friends[i].scn=self
 			##Friends[i]._connect()
 			chars[i].initialize()
@@ -66,6 +69,8 @@ class StatePlayerTurn:
 	var using_Ability
 	func _init(main,from):
 		Main=main
+		print("player turn")
+		_Unlock()
 		
 	func Endturn(char_used):
 		Main.ChangeState(Main.STATE_CHANGE,Main.STATE_PLAYER)
@@ -77,6 +82,8 @@ class StatePlayerTurn:
 		Main.emit_signal("TargetSelected", targ)
 	
 	func _playerActivated(iden):
+		print("jshdfjhsdgfj")
+		print(iden)
 		Main.emit_signal("PlayerTurn",iden)
 		using_Ability=null
 	
@@ -118,6 +125,7 @@ class StateChangeTurns:
 					ready=true
 			if not ready:
 				Refresh()
+			print("from enemy turn change")
 			Continue(Main.STATE_PLAYER)
 
 	func Refresh():
@@ -140,17 +148,18 @@ class StateEnemyturn:
 		var Max=[0,-99,null]
 		for E in Main.Es:
 			var res=E.in_entity.actionValue(Main)
-
+			print(res["use"])
 			if res["val"]>Max[1]:
-				Max=[E.Identity,res["val"],res]
+				Max=[E.Identity,res["val"],res["use"]]
 		
 		
 		Main.emit_signal("EnemyTurn",Max[0],Max[2])
+		Main.ChangeState(Main.STATE_CHANGE,Main.STATE_ENEMY)
 		#take enemy action
 		
 	
 	func exit():
-		Main.emit_signal("ChangeTurns")
+		print("exit turn")
 		Main.ChangeState(Main.STATE_CHANGE,Main.STATE_ENEMY)
 		#pass to change turn, send instruction to go to player turn.
 
@@ -262,7 +271,8 @@ func _playerActivated(iden):
 	
 	
 func _enemyturnend(source):
-	pass
+	if CurrentState.has_method("_exit"):
+		CurrentState.call("_exit")
 
 func _playerturnend(source):
 	if CurrentState.has_method("Endturn"):

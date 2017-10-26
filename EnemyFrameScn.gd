@@ -9,6 +9,10 @@ class StateReady:
 		Enemy=en
 		Enemy.get_node("Debug").set_text("Ready")
 	
+	func Action(use):
+		Enemy.in_entity.use_ability(use)
+		Enemy.ChangeState(Enemy.STATE_EXHAUSTED)
+	
 
 class StateTakingAction:
 	var Enemy
@@ -108,8 +112,8 @@ func _Playerturn(iden):
 	pass
 
 func _enemyturn(a,b):
-	if Identity==a:
-		pass #check before now that the entity is ready before calculating
+	if Identity==a and CurrentState.has_method("Action"):
+		CurrentState.call("Action",b) #check before now that the entity is ready before calculating
 		#if state has use ability (state ready) then take action in_entity.use_ability(b["use"]) and
 		#rewrite use_ability in goblin to take an array
 	

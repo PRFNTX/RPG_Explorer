@@ -17,3 +17,4 @@ func _on_Button_pressed():
 	var Goblin=load("res://Classes/Enemies/Goblin.scn")
 	
 	global.start_battle([Main,Jane,Sal],[Goblin,Goblin,Goblin,Goblin])
+	self.hide()

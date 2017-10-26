@@ -76,6 +76,8 @@ func initialize(party, enemy):
 		FriendSlot[i].set_texture(party[c].sprite)
 		FriendSlot[i].get_node("Def").set_text(str(party[c].Def))
 		f_Defs[i]=party[c].Def
+		print(Friends[i])
+		print(FriendSlot[i].get_node("Def"))
 		Friends[i].lbl_Def=FriendSlot[i].get_node("Def")
 		#dont sent def back to node
 		FriendSlot[i].get_node("HP").set_text(str(party[c].HP))

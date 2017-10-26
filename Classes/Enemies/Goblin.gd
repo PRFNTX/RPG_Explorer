@@ -40,7 +40,7 @@ func end_turn():
 			if t>1:
 				afflictions[a-1].append(a)
 	ready=false
-	ready_icon.hide()
+	#ready_icon.hide()
 
 func bleeding(t):
 	Damage(1)
@@ -121,6 +121,7 @@ func set_bars(text_def,text_hp):
 #func Action():
 func actionValue(main_scene):
 	#var scn=get_tree().get_current_scene()
+	
 	var scn=main_scene
 	var not_dead_players=[]
 	var pl_readies={}
@@ -158,7 +159,7 @@ func actionValue(main_scene):
 			if pl_vuln.has(i):
 				targs.append(i)
 		if targs.size()>0:
-			return({"val":4,"use":[1,targs[randi()%targs.size()]]})
+			return({"val":4,"use":[1,randi()%targs.size()]})
 			#attack random target with goblin punch
 		else:
 			var semi_vuln=[]
@@ -190,7 +191,10 @@ func actionValue(main_scene):
 					#panic
 					return({"val":0.5,"use":[3,0]})
 				
-func use_ability(ability,target):
+func use_ability(use):
+	print(use)
+	var ability = use[0]
+	var target = use[1]
 	##if an ability has two aspects (strike and poison) send each one individually
 	#if not blocked, do it and check the next one. if it is, dont do it, but check the next one? do in cancelling order?
 	#blocked poisoned strike, blocked strike stops poison, blocked poison does not stop strike
@@ -199,24 +203,24 @@ func use_ability(ability,target):
 	var scn=get_tree().get_current_scene()
 	var blocked=false
 	var not_dead_players=[]
-	for i in scn.Friends.keys():
-		if scn.Friends[i].ready:
-			not_dead_players.append(i)
+	for F in scn.Fs:
+		if F.in_entity.ready:
+			not_dead_players.append(F.Identity)
 	if ability==1:##goblin punch
 		print("Goblin Punch")
-		blocked=scn.Friends[target].targeted(ID,"strike")
-		if scn.Friends[target].dyn_Def<=0:
-			if not scn.Friends[target].ready and not blocked:
-				scn.Friends[target].HP-=2 #old code from when 2hp damage could be done, currently this will be converted to 1 damage on the character script
+		blocked=scn.Fs[target].in_entity.targeted(ID,"strike")
+		if scn.Fs[target].in_entity.dyn_Def<=0:
+			if not scn.Fs[target].in_entity.ready and not blocked:
+				scn.Fs[target].in_entity.HP-=2 #old code from when 2hp damage could be done, currently this will be converted to 1 damage on the character script
 			elif not blocked:
-				scn.Friends[target].HP-=1
+				scn.Fs[target].in_entity.HP-=1
 		else:
-			if not scn.Friends[target].ready and not blocked:
-				scn.Friends[target].dyn_Def-=2
+			if not scn.Fs[target].in_entity.ready and not blocked:
+				scn.Fs[target].in_entity.dyn_Def-=2
 			elif not blocked:
-				scn.Friends[target].dyn_Def-=1
+				scn.Fs[target].in_entity.dyn_Def-=1
 			
-	if ability==2:##Wild rush
+	elif ability==2:##Wild rush
 		print("Wild Rush")
 		var targs=[target]
 		if not_dead_players.find(target-1)>=0:
@@ -228,14 +232,14 @@ func use_ability(ability,target):
 		var blocked=[]
 		
 		for i in range(targs.size()):
-			blocked.append(scn.Friends[targs[i]].targeted(ID,"strike"))
+			blocked.append(scn.Fs[targs[i]].in_entity.targeted(ID,"strike"))
 		
 		for k in range(blocked.size()):
 			if not blocked[k]:
-				scn.Friends[targs[k]].dyn_Def=scn.Friends[targs[k]].dyn_Def-1
+				scn.Fs[targs[k]].in_entity.dyn_Def=scn.Fs[targs[k]].in_entity.dyn_Def-1
 				
 				
-	if ability==3: #panic
+	elif ability==3: #panic
 		print("Panic")
 		if Def==0:
 			Def+=3

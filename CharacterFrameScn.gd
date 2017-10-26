@@ -318,11 +318,8 @@ func ChangeState(newState,char=self):
 		CurrentState=StateAction.new(char)
 	elif newState==STATE_INACTIVE:
 		CurrentState=StateInactive.new(char,CurrentState.ID)
-	
 	elif newState==STATE_EXHAUSTED:
 		CurrentState=StateExhausted.new(char)
-		CurrentState.Character=char;
-		CurrentState.ready()
 
 var TargetState
 func Targeting(boo):

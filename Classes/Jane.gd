@@ -6,6 +6,7 @@ extends Node2D
 # var b="textvar"
 var scn
 var Name="Jane"
+var is=true
 var HP=2 setget hp_change
 var Def=3
 onready var Abilities={"Sword":get_tree().get_root().get_node("/root/AbilityIndex/sword"),"Slam":get_tree().get_root().get_node("/root/AbilityIndex/slam"),"Block":get_tree().get_root().get_node("/root/AbilityIndex/block"),"Flee":get_tree().get_root().get_node("/root/AbilityIndex/flee")}
@@ -30,7 +31,8 @@ func _ClearStagger():
 #stances get called on any turn taken
 #afflictions get called on each turn, even passed turns
 func readiness(val):
-	
+	print("readyness jane")
+	print(val)
 	if not dead:
 		if val and stagger:
 			ready=false
@@ -57,7 +59,13 @@ func targeted(from, effect):
 			if not m.call("mod",self,from):
 				blocks=true
 	return(blocks)
-	
+
+func damage(val):
+	if dyn_Def>0:
+		self.dyn_Def-=min(val,dyn_Def)
+	else:
+		HP-=1
+	lbl_HP.set_text(str(HP))
 
 func get_Def():
 	return(dyn_Def)

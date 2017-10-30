@@ -64,9 +64,11 @@ class StateAction:
 		Character.ChangeState(Character.STATE_READY)
 	
 	func Complete():
-		Character.emit_signal("PlayerTurnEnd",Character)
-		Character.ChangeState(Character.STATE_EXHAUSTED)
+		
+		Character.in_entity.ready=false
+		#Character.ChangeState(Character.STATE_EXHAUSTED)
 		Character.call("Targeting",false)
+		Character.emit_signal("PlayerTurnEnd",Character)
 	
 	func TargetRecieved(targs):
 		#for targ in targs:
@@ -234,7 +236,6 @@ func _affected(abl,iden,fren):
 		else:
 			
 			for i in range(0,abl.affect.size()):
-				print(abl.affect[i])
 				if Identity==abl.affect[i]+iden:
 					get_node("Cover").show()
 	
@@ -285,10 +286,13 @@ func initialize():
 		#texture
 		#def and hp set already
 	#populate abilities
-	for key in in_entity.Abilities.keys():
-		get_node("ActionList/ItemList").add_item(key)
-	 get_node("Char").set_texture(in_entity.sprite)
-	pass
+	if in_entity.is:
+		for key in in_entity.Abilities.keys():
+			get_node("ActionList/ItemList").add_item(key)
+		get_node("Char").set_texture(in_entity.sprite)
+		in_entity.ready=true;
+	else:
+		set_process_input(false)
 
 
 

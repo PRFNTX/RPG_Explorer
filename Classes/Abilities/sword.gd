@@ -21,4 +21,5 @@ func _ready():
 func use(target,by):
 	#get_tree().get_current_scene().Enemies[target[0]].Damage(damage)
 	target.in_entity.Damage(damage)
+	by.in_entity.dyn_Def+=1
 

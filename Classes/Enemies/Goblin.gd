@@ -4,7 +4,12 @@ extends Node2D
 var scn
 var Name="Goblin"
 var ID
-var ready=true setget readiness
+var ready=true setget readiness,isReady
+
+func isReady():
+	return ready
+
+var whenReady
 var ready_icon
 var HP=2 setget change_hp
 var Def=1 setget change_def
@@ -27,13 +32,8 @@ func _ClearStagger():
 	stagger=false
 	
 
-
-func start_turn():
-	Action()
-	
-
 func end_turn():
-	ready=false
+	self.ready=false
 	for t in afflictions.keys():
 		for a in afflictions[t]:
 			call(a,t)
@@ -46,8 +46,12 @@ func bleeding(t):
 	Damage(1)
 
 func readiness(val):
-	print("val = ")
-	print(val)
+	print("setter")
+	if val:
+		whenReady.call_func(0)
+	else:
+		whenReady.call_func(2)
+	
 	if not dead:
 		ready=val
 	#check stagger
@@ -123,7 +127,7 @@ func set_bars(text_def,text_hp):
 #func Action():
 func actionValue(main_scene):
 	#var scn=get_tree().get_current_scene()
-	
+	print(ready)
 	var scn=main_scene
 	var not_dead_players=[]
 	var pl_readies={}
@@ -194,7 +198,6 @@ func actionValue(main_scene):
 					return({"val":0.5,"use":[3,0]})
 				
 func use_ability(use):
-	print(use)
 	var ability = use[0]
 	var target = use[1]
 	##if an ability has two aspects (strike and poison) send each one individually
@@ -211,16 +214,23 @@ func use_ability(use):
 	if ability==1:##goblin punch
 		print("Goblin Punch")
 		blocked=scn.Fs[target].in_entity.targeted(ID,"strike")
-		if scn.Fs[target].in_entity.dyn_Def<=0:
-			if not scn.Fs[target].in_entity.ready and not blocked:
-				scn.Fs[target].in_entity.HP-=2 #old code from when 2hp damage could be done, currently this will be converted to 1 damage on the character script
-			elif not blocked:
-				scn.Fs[target].in_entity.HP-=1
-		else:
-			if not scn.Fs[target].in_entity.ready and not blocked:
-				scn.Fs[target].in_entity.dyn_Def-=2
-			elif not blocked:
-				scn.Fs[target].in_entity.dyn_Def-=1
+		if not blocked:
+			if scn.Fs[target].in_entity.ready:
+				print("Damage 1")
+				scn.Fs[target].in_entity.damage(1)
+			else:
+				print("damage 3")
+				scn.Fs[target].in_entity.damage(3)
+		#if scn.Fs[target].in_entity.dyn_Def<=0:
+		#	if not scn.Fs[target].in_entity.ready and not blocked:
+		#		scn.Fs[target].in_entity.HP-=2 #old code from when 2hp damage could be done, currently this will be converted to 1 damage on the character script
+		#	elif not blocked:
+		#		scn.Fs[target].in_entity.HP-=1
+		#else:
+		#	if not scn.Fs[target].in_entity.ready and not blocked:
+		#		scn.Fs[target].in_entity.dyn_Def-=2
+		#	elif not blocked:
+		#		scn.Fs[target].in_entity.dyn_Def-=1
 			
 	elif ability==2:##Wild rush
 		print("Wild Rush")
@@ -238,7 +248,8 @@ func use_ability(use):
 		
 		for k in range(blocked.size()):
 			if not blocked[k]:
-				scn.Fs[targs[k]].in_entity.dyn_Def=scn.Fs[targs[k]].in_entity.dyn_Def-1
+				#scn.Fs[targs[k]].in_entity.dyn_Def=scn.Fs[targs[k]].in_entity.dyn_Def-1
+				scn.Fs[targs[k]].in_entity.damage(1)
 				
 				
 	elif ability==3: #panic

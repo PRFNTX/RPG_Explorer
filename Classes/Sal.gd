@@ -4,6 +4,7 @@ extends Node2D
 #Rogue
 var scn
 var Name="Sal"
+var is=true
 var Def=2
 onready var Abilities={ "Dagger":get_tree().get_root().get_node("/root/AbilityIndex/dagger"),"Smoke Bomb":get_tree().get_root().get_node("/root/AbilityIndex/smokebomb"),"Invisibility":get_tree().get_root().get_node("/root/AbilityIndex/invisibility"),"Flee":get_tree().get_root().get_node("/root/AbilityIndex/flee")}
 onready var sprite=load("res://Art Assets/Sal.png")
@@ -27,7 +28,8 @@ func _ClearStagger():
 #stances get called on any turn taken
 #afflictions get called on each turn, even passed turns
 func readiness(val):
-	
+	print("readiness sal")
+	print(val)
 	if not dead:
 		if val and stagger:
 			ready=false
@@ -54,7 +56,13 @@ func targeted(from, effect):
 			if not m.call("mod",self,from):
 				blocks=true
 	return(blocks)
-	
+
+func damage(val):
+	if dyn_Def>0:
+		self.dyn_Def-=min(val,dyn_Def)
+	else:
+		HP-=1
+	lbl_HP.set_text(str(HP))
 
 func get_Def():
 	return(dyn_Def)

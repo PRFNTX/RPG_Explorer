@@ -2,6 +2,7 @@
 extends Node2D
 
 var Name="JohnDoe"
+var is=true
 var HP=2 setget hp_change
 var Def=3
 
@@ -34,7 +35,8 @@ func _ClearStagger():
 #stances get called on any turn taken
 #afflictions get called on each turn, even passed turns
 func readiness(val):
-	
+	print("readiness Main")
+	print(val)
 	if not dead:
 		if val and stagger:
 			ready=false
@@ -64,9 +66,9 @@ func _connect():
 
 func damage(val):
 	if dyn_Def>0:
-		dyn_Def-=val
+		self.dyn_Def-=min(val,dyn_Def)
 	else:
-		HP-=val
+		HP-=1
 	lbl_HP.set_text(str(HP))
 
 func def_change(val):

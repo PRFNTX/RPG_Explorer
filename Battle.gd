@@ -38,14 +38,12 @@ class StateBattleInit:
 			##Friends[i]._connect()
 			chars[i].initialize()
 			i+=1
-		print(party.size())
 		if party.size()<4:
 			#var starts=["Start1","Start2","Start3","Start4"]
 			for x in range(party.size(),4):
 				#print(x)
 				chars[x].hide()
 				chars[x].in_entity=empty_entity
-		print(enemy.size())
 		for e in enemy:
 			ens[j].in_entity=e.instance()
 			ens[j].add_child(ens[j].in_entity)
@@ -54,9 +52,10 @@ class StateBattleInit:
 			ens[j].get_node("HP").set_text(str(ens[j].in_entity.HP))
 			ens[j].in_entity.set_bars(ens[j].get_node("Def"),ens[j].get_node("HP"))
 			#ens[j]in_entity.ready_icon=Ens[j].get_node("Ready")
-			ens[j].in_entity.ready=true
 			ens[j].in_entity.ID=j
 			ens[j].in_entity.scn=self
+			ens[j]._initialize()
+			ens[j].in_entity.ready=true
 			#Ens[j].in_entity._connect()
 			j+=1
 		exit()
@@ -78,7 +77,6 @@ class StatePlayerTurn:
 		_Unlock()
 		
 	func Endturn(char_used):
-		print("tried end turn")
 		Main.ChangeState(Main.STATE_CHANGE,Main.STATE_PLAYER)
 		
 	func _targetable(ablDNU,iden,friend):#for highlighting affected
@@ -88,8 +86,6 @@ class StatePlayerTurn:
 		Main.emit_signal("TargetSelected", targ)
 	
 	func _playerActivated(iden):
-		print("jshdfjhsdgfj")
-		print(iden)
 		Main.emit_signal("PlayerTurn",iden)
 		using_Ability=null
 	
@@ -120,24 +116,25 @@ class StateChangeTurns:
 		if From<0:
 			print("ENTERED TURN CHANGE FROM INVALID CALL")
 		elif From==Main.STATE_PLAYER:
-			var ready=false
+			var isReady=false
 			for E in Main.Es:
 				if E.in_entity.ready:
-					ready=true
-			if not ready:
+					isReady=true
+			if not isReady:
 				Refresh()
 			Continue(Main.STATE_ENEMY)
 			#check if enemies are readied
 		elif From==Main.STATE_ENEMY:
-			var ready=false
+			var isReady=false
 			for F in Main.Fs:
 				if F.in_entity.ready:
-					ready=true
-			if not ready:
+					isReady=true
+			if not isReady:
 				Refresh()
 			Continue(Main.STATE_PLAYER)
 
 	func Refresh():
+		print("refreshing")
 		for F in Main.Fs:
 			F.in_entity.ready=true
 		for E in Main.Es:
@@ -156,17 +153,13 @@ class StateEnemyturn:
 		Main=main
 	
 	func _do():
-		print("made it to enemy turn state")
 		var Max=[0,-99,null]
 		var reds=[]
 		for E in Main.Es:
-			print(E.in_entity.ready)
 			if E.in_entity.ready:
 				reds.append(E)
-		print(reds.size())
 		for E in reds:
 			var res=E.in_entity.actionValue(Main)
-			print(res["use"])
 			if res["val"]>Max[1]:
 				Max=[E.Identity,res["val"],res["use"]]
 		

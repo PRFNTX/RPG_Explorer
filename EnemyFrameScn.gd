@@ -10,8 +10,7 @@ class StateReady:
 		Enemy.get_node("Debug").set_text("Ready")
 	
 	func Action(use):
-		print("taking action")
-		print(Enemy.Identity)
+		
 		Enemy.in_entity.use_ability(use)
 		Enemy.ChangeState(Enemy.STATE_EXHAUSTED)
 	
@@ -35,7 +34,7 @@ class StateTargetable:
 	var Enemy
 	func _init(en):
 		Enemy=en
-		Enemy.get_node("Debug").set_text("Targetable")
+		#Enemy.get_node("Debug").set_text("Targetable")
 	
 	func Targeted():
 		Enemy.emit_signal("Targeted",Enemy)
@@ -50,7 +49,7 @@ class StateUntargetable:
 	var Enemy
 	func _init(en):
 		Enemy=en
-		Enemy.get_node("Debug").set_text("Untargetable")
+		#Enemy.get_node("Debug").set_text("Untargetable")
 	
 	func Clear():
 		Enemy.emit_signal("Mouseover",null,-1)
@@ -83,8 +82,13 @@ func _ready():
 	
 	set_process_input(true)
 	ChangeState(STATE_READY)
+	
 	pass
 	
+func _initialize():
+	in_entity.whenReady=funcref(self,"ChangeState")
+	in_entity.ready=true;
+
 ####### Signal Functions#######
 func _affected(abl,iden,fren):
 	get_node("Cover").hide()
@@ -95,7 +99,6 @@ func _affected(abl,iden,fren):
 		else:
 			
 			for i in range(0,abl.affect.size()):
-				print(abl.affect[i])
 				if Identity==abl.affect[i]+iden:
 					get_node("Cover").show()
 
@@ -114,6 +117,8 @@ func _Playerturn(iden):
 	pass
 
 func _enemyturn(a,b):
+	
+	print(a)
 	if Identity==a and CurrentState.has_method("Action"):
 		CurrentState.call("Action",b) #check before now that the entity is ready before calculating
 		#if state has use ability (state ready) then take action in_entity.use_ability(b["use"]) and
@@ -125,8 +130,8 @@ func _enemyturn(a,b):
 func ChangeState(newState):
 	if newState==STATE_READY:
 		CurrentState=StateReady.new(self)
-	elif newState==STATE_ACTION:
-		CurrentState=StateTakingAction.new(self)
+	#elif newState==STATE_ACTION:
+	#	CurrentState=StateTakingAction.new(self)
 	elif newState==STATE_EXHAUSTED:
 		CurrentState=StateExhausted.new(self)
 	

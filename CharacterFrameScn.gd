@@ -351,7 +351,14 @@ var using_Ability
 func Button_Pressed(abl):
 	using_Ability=in_entity.Abilities[abl]
 	#print(get_parent())
-	get_parent().OpenTargeting(using_Ability.bool_friend, using_Ability.bool_enemy,self,using_Ability.bool_self,using_Ability)
+	if (using_Ability.auto_target):
+		if using_Ability.bool_self:
+			print(self.CurrentState.debug_name)
+			CurrentState.call("TargetRecieved",self.Identity)
+		else:
+			CurrentState.call("TargetRecieved",using_Ability.get_targ(self).Identity)
+	else:
+		get_parent().OpenTargeting(using_Ability.bool_friend, using_Ability.bool_enemy,self,using_Ability.bool_self,using_Ability)
 
 
 

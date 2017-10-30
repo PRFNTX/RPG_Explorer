@@ -11,11 +11,11 @@ var damage=1
 
 var auto_target=false
 
-func use(target):
-	var t=get_tree().get_current_scene().Enemies[target]
-	t.Def-=1
-	if t.Def<=0:
-		t.stagger()
+func use(target,by):
+	var t=target.in_entity
+	t.Damage(damage)
+	#if t.Def<=0:
+	t.stagger=true
 
 func _ready():
 	# Called every time the node is added to the scene.

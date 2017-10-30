@@ -75,6 +75,8 @@ class StatePlayerTurn:
 		
 	func _do():
 		_Unlock()
+		for E in Main.Es:
+			E.in_entity._ClearStagger()
 		
 	func Endturn(char_used):
 		Main.ChangeState(Main.STATE_CHANGE,Main.STATE_PLAYER)
@@ -113,6 +115,7 @@ class StateChangeTurns:
 		
 	func _do():
 		Main.emit_signal("ChangeTurns")
+		
 		if From<0:
 			print("ENTERED TURN CHANGE FROM INVALID CALL")
 		elif From==Main.STATE_PLAYER:
@@ -153,6 +156,8 @@ class StateEnemyturn:
 		Main=main
 	
 	func _do():
+		for F in Main.Fs:
+			F.in_entity._ClearStagger()
 		var Max=[0,-99,null]
 		var reds=[]
 		for E in Main.Es:

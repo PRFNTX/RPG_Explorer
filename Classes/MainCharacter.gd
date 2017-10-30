@@ -51,9 +51,9 @@ func readiness(val):
 func targeted(from, effect):
 	var blocks=false
 	for k in mods.keys():
-		
 		for m in mods[k]:
-			if not m.call("mod",self,from):
+			print(m)
+			if not m.call_func(self,from,m):
 				blocks=true
 	return(blocks)
 	
@@ -68,7 +68,7 @@ func damage(val):
 	if dyn_Def>0:
 		self.dyn_Def-=min(val,dyn_Def)
 	else:
-		HP-=1
+		self.HP-=1
 	lbl_HP.set_text(str(HP))
 
 func def_change(val):
@@ -87,6 +87,7 @@ func hp_change(val):
 	check_alive()
 
 func check_alive():
+	print(HP)
 	if HP<=0:
 		dead=true
 		ready=false

@@ -37,6 +37,7 @@ class StateTargetable:
 		#Enemy.get_node("Debug").set_text("Targetable")
 	
 	func Targeted():
+		Clear()
 		Enemy.emit_signal("Targeted",Enemy)
 	
 	func Mouseover(abl):

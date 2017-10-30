@@ -41,4 +41,8 @@ func _ready():
 func targeted(a,b):
 	return(false)
 
+func _ClearStagger():
+	pass
+
+
 

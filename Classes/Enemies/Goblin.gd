@@ -13,6 +13,13 @@ var whenReady
 var ready_icon
 var HP=2 setget change_hp
 var Def=1 setget change_def
+var dyn_Def setget convert_Def,get_convert_Def
+
+func convert_Def(val):
+	self.Def=val
+func get_convert_Def():
+	return Def
+
 var Abilities={"Attack":"Dagger","Defence":"Block","Flee":"Flee"}
 onready var sprite=load("res://Art Assets/Goblin.png")
 var to_dead=true
@@ -47,17 +54,18 @@ func bleeding(t):
 
 func readiness(val):
 	print("setter")
-	if val:
-		whenReady.call_func(0)
-	else:
-		whenReady.call_func(2)
 	
 	if not dead:
 		ready=val
 	#check stagger
 		if val and stagger:
+			print("val and stagger")
 			ready=false
 			stagger=false
+	if ready:
+		whenReady.call_func(0)
+	else:
+		whenReady.call_func(2)
 		
 	#	if ready:
 	#		ready_icon.show()
@@ -80,11 +88,11 @@ func change_hp(val):
 
 func Damage(val):
 	if Def==0:
-		HP-=val
+		HP-=1
 		lbl_HP.set_text(str(HP))
 		check_alive()
 	if Def>0:
-		Def-=val
+		Def-=min(val,Def)
 		lbl_Def.set_text(str(Def))
 		print(Def)
 		

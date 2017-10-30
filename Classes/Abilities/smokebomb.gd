@@ -9,6 +9,8 @@ var effect="ability"
 var affect=[-1,0,1]
 var damage=0
 
+var auto_target=false
+
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -34,11 +36,12 @@ func use(target,by):
 		targs.append(target.get_parent().get_entity(target.friend,i-1))
 	
 	if not target.in_entity.dead:
+		target.in_entity.dyn_Def=target.in_entity.dyn_Def+1
 		target.in_entity.stagger=true
 	
 	for t in targs:
 		if not t.in_entity.dead:
-			t.in_entity.Def+=1
+			t.in_entity.dyn_Def+=1
 			t.in_entity.ready=false
 	
 	#####UPDATE

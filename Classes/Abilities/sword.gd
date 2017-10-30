@@ -7,7 +7,7 @@ var bool_friend=false
 var bool_self=false
 var effect="damage"
 var affect=[0]
-var damage=1
+var damage=2
 
 var auto_target=false
 

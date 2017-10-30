@@ -12,14 +12,19 @@ var damage=2
 
 var auto_target=true
 
-func mod(me,target):
-	
-	target.Damage(2)
-	me.mods["Strike"].remove(me.mods["Strike"].find(self))
+func mod(me,target,ref):
+	print("doin the parry")
+	#change below to strike ability
+	get_tree().get_current_scene().Es[target].in_entity.Damage(damage)
+	me.mods["Strike"].remove(me.mods["Strike"].find(ref))
+	#return attack does not complete
 	return(false)
 
-func use(target):
-	get_tree().get_current_scene().Friends[target].mods["Strike"].append(self)
+func use(target,by):
+	#get_tree().get_current_scene().Fs[
+	by.in_entity.dyn_Def+=1
+	by.in_entity.mods["Strike"].append(funcref(self,"mod"))
+	print(by.in_entity.mods["Strike"])
 	
 func get_targ(user):
 	return(user)

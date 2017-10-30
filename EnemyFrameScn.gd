@@ -10,6 +10,8 @@ class StateReady:
 		Enemy.get_node("Debug").set_text("Ready")
 	
 	func Action(use):
+		print("taking action")
+		print(Enemy.Identity)
 		Enemy.in_entity.use_ability(use)
 		Enemy.ChangeState(Enemy.STATE_EXHAUSTED)
 	

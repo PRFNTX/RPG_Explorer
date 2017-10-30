@@ -13,7 +13,6 @@ class StateInactive:
 	var ID=3
 	func _init(Char,hold):
 		Character=Char
-		print(hold)
 		State_From=hold
 		Character.get_node("Debug").set_text("Inactive")
 	
@@ -67,6 +66,7 @@ class StateAction:
 	func Complete():
 		Character.emit_signal("PlayerTurnEnd",Character)
 		Character.ChangeState(Character.STATE_EXHAUSTED)
+		Character.call("Targeting",false)
 	
 	func TargetRecieved(targs):
 		#for targ in targs:
@@ -122,10 +122,10 @@ class StateUntargetable:
 	func _init(Char):
 		Character=Char
 
-var STATE_READY=0
-var STATE_ACTION =1
-var STATE_EXHAUSTED =2
-var STATE_INACTIVE =3
+const STATE_READY=0
+const STATE_ACTION =1
+const STATE_EXHAUSTED =2
+const STATE_INACTIVE =3
 
 signal PlayerTurnEnd
 signal Activated
@@ -191,12 +191,12 @@ class State_invisShift:
 var CurrentState
 var ShiftState
 
-var STATESHIFT=1
-var STATENOSHIFT=2
-var STATEINVIS=3
+const STATESHIFT=1
+const STATENOSHIFT=2
+const STATEINVIS=3
 
-var STATETARGETABLE=1
-var STATEUNTARGETABLE=2
+const STATETARGETABLE=1
+const STATEUNTARGETABLE=2
 
 var Entity
 
@@ -265,6 +265,7 @@ func _playerturn(iden):
 		Shift(STATENOSHIFT)
 	elif Identity>iden:
 		Shift(STATESHIFT)
+	Targeting(false)
 
 func _targetstart(booF,booE,in_self,cat_targ_self,abl):
 	if CurrentState.has_method("_Lock"):

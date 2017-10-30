@@ -33,19 +33,21 @@ func start_turn():
 	
 
 func end_turn():
+	ready=false
 	for t in afflictions.keys():
 		for a in afflictions[t]:
 			call(a,t)
 			afflictions[t].remove(afflictions[t].find(a))
 			if t>1:
 				afflictions[a-1].append(a)
-	ready=false
 	#ready_icon.hide()
 
 func bleeding(t):
 	Damage(1)
 
 func readiness(val):
+	print("val = ")
+	print(val)
 	if not dead:
 		ready=val
 	#check stagger

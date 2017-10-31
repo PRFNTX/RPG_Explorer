@@ -24,6 +24,16 @@ var forfeit=false
 var dyn_Def setget def_change,get_Def
 var dead=false
 var stagger=false
+var status={}
+
+func effects():
+	for eff in status.keys():
+		eff.call_func(self)
+		if status[eff]==1:
+			status.erase(eff)
+		else:
+			status[eff]-=1
+			
 
 func _ClearStagger():
 	stagger=false

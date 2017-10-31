@@ -21,6 +21,16 @@ var lbl_Def
 var lbl_HP
 var dead=false
 var stagger=false
+var status={}
+
+func effects():
+	for eff in status.keys():
+		eff.call_func(self)
+		if status[eff]==1:
+			status.erase(eff)
+		else:
+			status[eff]-=1
+			
 
 func _ClearStagger():
 	stagger=false
@@ -53,7 +63,7 @@ func targeted(from, effect):
 	for k in mods.keys():
 		
 		for m in mods[k]:
-			if not m.call("mod",self,from):
+			if not m.call_func("mod",self,from,m):
 				blocks=true
 	return(blocks)
 

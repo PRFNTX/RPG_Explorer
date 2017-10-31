@@ -9,7 +9,7 @@ var Def=3
 #onready var index=get_tree().get_root().get_node("/root/AbilityIndex/sword")
 #keys will need to be unique
 #onready var Abilities={"Attack":[get_tree().get_root().get_node("/root/AbilityIndex/sword")],"Ability":[get_tree().get_root().get_node("/root/AbilityIndex/taunt")],"Defence":[get_tree().get_root().get_node("/root/AbilityIndex/parry")],"Flee":[get_tree().get_root().get_node("/root/AbilityIndex/flee")]}
-onready var Abilities={"Sword":get_tree().get_root().get_node("/root/AbilityIndex/sword"),"Taunt":get_tree().get_root().get_node("/root/AbilityIndex/taunt"),"Parry":get_tree().get_root().get_node("/root/AbilityIndex/parry"),"Flee":get_tree().get_root().get_node("/root/AbilityIndex/flee")}
+onready var Abilities={"Sword":get_tree().get_root().get_node("/root/AbilityIndex/sword"),"Vigor":get_tree().get_root().get_node("/root/AbilityIndex/vigor"),"Parry":get_tree().get_root().get_node("/root/AbilityIndex/parry"),"Flee":get_tree().get_root().get_node("/root/AbilityIndex/flee")}
 onready var sprite =load("res://Art Assets/Main.jpg")
 
 
@@ -27,6 +27,16 @@ var lbl_Def
 var lbl_HP
 var dead=false
 var stagger=false
+var status={}
+
+func effects():
+	for eff in status.keys():
+		eff.call_func(self)
+		if status[eff]==1:
+			status.erase(eff)
+		else:
+			status[eff]-=1
+		
 
 func _ClearStagger():
 	stagger=false

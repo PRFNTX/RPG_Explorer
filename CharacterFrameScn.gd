@@ -68,6 +68,7 @@ class StateAction:
 		Character.in_entity.ready=false
 		#Character.ChangeState(Character.STATE_EXHAUSTED)
 		Character.call("Targeting",false)
+		Character.in_entity.effects()
 		Character.emit_signal("PlayerTurnEnd",Character)
 	
 	func TargetRecieved(targs):

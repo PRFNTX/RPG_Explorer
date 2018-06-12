@@ -136,8 +136,9 @@ func set_bars(text_def,text_hp):
 func actionValue(main_scene):
 	#var scn=get_tree().get_current_scene()
 	print(ready)
+	var retVals=[]
 	var scn=main_scene
-	var not_dead_players=[]
+	var not_dead_players=[] #contains identity numbers
 	var pl_readies={}
 	var pl_used=[]
 	var ai_readies={}
@@ -167,13 +168,13 @@ func actionValue(main_scene):
 	
 	var targs=[]
 	if Def==0:
-		return({"val":3,"use":[3,0]})
+		retVals.append({"val":3,"use":[3,0]})
 	else:
 		for i in not_dead_players:
 			if pl_vuln.has(i):
 				targs.append(i)
 		if targs.size()>0:
-			return({"val":4,"use":[1,randi()%targs.size()]})
+			retVals.append({"val":4,"use":[1,randi()%targs.size()]})
 			#attack random target with goblin punch
 		else:
 			var semi_vuln=[]
@@ -183,7 +184,7 @@ func actionValue(main_scene):
 				if i.dyn_Def>=2 and not i.ready:
 					semi_vuln.append(i)
 			var final_pair=[]
-			if not scn.Fs[2].forfeit and not scn.Fs[2].dead:
+			if not scn.Fs[2].in_entity.forfeit and not scn.Fs[2].dead:
 				final_pair.append(scn.Fs[2])
 			if not scn.Fs[3].in_entity.forfeit and not scn.Fs[3].in_entity.dead:
 				final_pair.append(scn.Fs[2])
@@ -192,19 +193,24 @@ func actionValue(main_scene):
 				var choice=randi()%(semi_vuln.size()+final_pair.size())
 				if choice<semi_vuln.size():
 					#attack semi_vuln[choice} with goblin punch
-					return({"val":2,"use":[1,semi_vuln[choice]]})
+					retVals.append({"val":2,"use":[1,semi_vuln[choice]]})
 				else:
 					#attack final_pair[choice]
-					return({"val":1.5,"use":[2,final_pair[choice]]})
+					retVals.append({"val":1.5,"use":[2,final_pair[choice]]})
 			else:
 				var choice=randi()%(not_dead_players.size()+1)
 				if choice<not_dead_players.size():
 					#goblin punch not_dead_players[choice]
-					return({"val":1,"use":[1,not_dead_players[choice]]})
+					retVals.append({"val":1,"use":[1,not_dead_players[choice]]})
 				else:
 					#panic
-					return({"val":0.5,"use":[3,0]})
-				
+					retVals.append({"val":0.5,"use":[3,0]})
+	var n_max=0
+	for i in range(0,retVals.size()):
+		if retVals[i].val>retVals[n_max].val:
+			n_max=i
+	return retVals[n_max]
+
 func use_ability(use):
 	var ability = use[0]
 	var target = use[1]

@@ -15,7 +15,7 @@ var ENEMIES={}
 onready var ldBATTLESCENE=load("res://Battle.scn")
 
 onready var ldATTACKS={"Sword":load("res://Classes/Abilities/sword.scn"),"Dagger":load("res://Classes/Abilities/dagger.scn"),"Staff":load("res://Classes/Abilities/staff.scn")}
-onready var ldABILITIES={"Taunt":load("res://Classes/Abilities/taunt.scn"),"Slam":load("res://Classes/Abilities/slam.scn"),"Bleed":load("res://Classes/Abilities/bleed.scn"),"Smoke Bomb":load("res://Classes/Abilities/smokebomb.scn")}
+onready var ldABILITIES={"Vigor":load("res://Classes/Abilities/vigor.scn"),"Slam":load("res://Classes/Abilities/slam.scn"),"Bleed":load("res://Classes/Abilities/bleed.scn"),"Smoke Bomb":load("res://Classes/Abilities/smokebomb.scn")}
 onready var ldDEFEND={"Block":load("res://Classes/Abilities/block.scn"),"Invisibility":load("res://Classes/Abilities/invisibility.scn"),"Parry":load("res://Classes/Abilities/parry.scn")}
 onready var ldFLEE={"Flee":load("res://Classes/Abilities/flee.scn")}
 onready var ldCHARACTERS={"MainCharacter":load("res://Classes/MainCharacter.scn"),"Jane":load("res://Classes/Jane.scn"),"Sal":load("res://Classes/Sal.scn"),"empty":load("res://Classes/empty.scn")}

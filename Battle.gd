@@ -7,31 +7,30 @@ class StateBattleInit:
 	var Main
 	func _init(main,from):
 		Main=main
-	
+
 	func _do():
 		pass
-	
+
 	func Initialize(party,enemy):
 		var i=0
 		var j=0
 		var chars = [Main.get_node(Main.F1),Main.get_node(Main.F2),Main.get_node(Main.F3),Main.get_node(Main.F4)]
 		var ens = [Main.get_node(Main.E1),Main.get_node(Main.E2),Main.get_node(Main.E3),Main.get_node(Main.E4)]
 		var empty_entity=Main.get_tree().get_root().get_node("/root/AbilityIndex/empty")
-	
-	
+
+
 		for c in range(0,party.size()):
-			
+
 			chars[i].in_entity=party[c]
 			chars[i].in_texture=party[c].sprite
-			
+
 			chars[i].in_def=party[c].Def
-			
+
 			#dont sent def back to node
 			chars[i].get_node("HP").set_text(str(party[c].HP))
 			#Friends[i].lbl_HP=FriendSlot[i].get_node("HP")
 			#send health back to node
 			chars[i].in_entity.frame=chars[i]
-			
 			chars[i].in_entity.lbl_Def=chars[i].get_node("Def")
 			chars[i].in_entity.lbl_HP=chars[i].get_node("HP")
 			##Friends[i].scn=self
